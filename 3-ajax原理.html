@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+		//传统的数据交互
+		<form action="" method="get">
+			用户名：<input type="text" name="user" /><br/>
+			密码：<input type="password" name="psd" /><br/>
+			<input type="submit" value="提交" />
+		</form>
+		-->
+		<!--ajax数据交互-->
+			用户名：<input type="text" name="user" id="name" /><span id="span"></span>		
+		<script>
+		//ajax交互模型(实现原理、实现机制)
+			var user = document.getElementById("user");
+			var span = document.getElementById("span");
+			user.onblur = function () {
+				//1.创建一个ajax对象
+				var ajax = new XMLHttpRequest();
+				//2.填写请求地址
+					//1.method:使用什么方式请求
+					//2.url:请求地址
+					//3.boolean:是否异步(默认true)
+				ajax.open('GET','后端URL')
+				//3.发送请求
+				ajax.send();
+				//4.等待服务器相应
+				ajax.onload = function () {
+					//通信
+					//ajax.responseText后端处理完成之后返回的数据
+					span.innerHTML = ajax.responseText;
+				}
+			}
+  				
+//			JSON转对象：JSON.parse()
+//				var data = JSON.parse(ajax.responseText);
+		</script>
+	</body>
+</html>

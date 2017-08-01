@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			AJAX：用于创建快速动态网页的技术，一种前端与后端的数据交互方式(数据分离的技术)，一种获取动态数据的方法
+				Asynchronous JavaScript and XML（异步的 JavaScript 和 XML[XML：是一种数据格式]）
+			****不管什么格式，获取到的后端数据都是字符串，除非配置dataType:'JSON'****
+				XMLHttpRequest（|XHR|用于在后台与服务器交换数据） 是 AJAX 的基础
+				
+			作用：
+				1.减少服务器压力
+				2.优化用户体验，无刷新页面就能访问数据
+				3.使用异步方式与服务器通信，不需要打断用户操作，具有更加迅速的响应能力
+				
+			为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持 XMLHttpRequest 对象。如果支持，则创建 XMLHttpRequest 对象。如果不支持，则创建 ActiveXObject ：
+				var xmlhttp;
+				if (window.XMLHttpRequest){
+					// code for IE7+, Firefox, Chrome, Opera, Safari
+				  	xmlhttp=new XMLHttpRequest();
+				}else{
+					// code for IE6, IE5
+				  	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  			}
+  			
+  			写法：
+  				$.ajax({
+  					url:'后端接口地址'，
+  					data{
+  						拼接的字段：需要拼接的数据（前端传给后端的数据）
+  					},
+  					//当服务器处理完
+  					success:function(data){	//回调
+  						console.log(data);
+  					}
+  				})
+		-->
+	</body>
+</html>

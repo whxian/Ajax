@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<script>
+		/*
+		post：通过send发送前端数据给后端
+			相对安全（关于用户的信息都用post或传文件的时候）
+			体积：理论来说无限大，不过后端会做限制
+			要在send前设置一个setRequestHeader()【请求头】
+			ajax.setRequestHeader("content-type",)
+			传数据在请求头中传
+		get：通过浏览器的URL来发送数据给后端
+			相对来说不安全（只要不跟用户信息打交道或在数据一定范围内都可以用get）
+			体积：受浏览器限制（不同浏览器会有不同限制）
+			不用设置请求头
+			传数据时候在open的url中传
+		
+		在IE下，中文会被解析成URL码，所以建议只要val值会出现中文时就用encodeURI来包一下。
+			encodeURI(内容)；	//中文转URL码
+			decodeURI(内容)；	//URL码转中文
+		
+		
+		
+		 * */
+	</script>
+	</body>
+</html>
