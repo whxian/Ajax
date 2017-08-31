@@ -7,17 +7,79 @@
 	<body>
 	<script>
 		/*
+		get：通过浏览器的URL来发送数据给后端
+			相对来说不安全（只要不跟用户信息打交道或在数据一定范围内都可以用get）
+			体积：受浏览器限制（不同浏览器会有不同限制）
+			不用设置请求头
+			传数据时候在open的url中传
+			
 		post：通过send发送前端数据给后端
 			相对安全（关于用户的信息都用post或传文件的时候）
 			体积：理论来说无限大，不过后端会做限制
 			要在send前设置一个setRequestHeader()【请求头】
 			ajax.setRequestHeader("content-type",)
 			传数据在请求头中传
-		get：通过浏览器的URL来发送数据给后端
-			相对来说不安全（只要不跟用户信息打交道或在数据一定范围内都可以用get）
-			体积：受浏览器限制（不同浏览器会有不同限制）
-			不用设置请求头
-			传数据时候在open的url中传
+			
+		JS原生get方法的小栗子:
+			用户名：<input type = "text" id = "user">
+			<span></span>
+			var user = document.getElementById('user');
+			var span = document.getElementByTagName('span')[0];
+			user.onblur = function(){
+				const ajax = XMLHttpRequest;
+				ajax.open('get','php/get.php?user='+user.value);//同级目录下php下的php文件
+				ajax.send();
+				ajax.onload = function(){
+					var data = JSON.parse(ajax.responseText);
+					span.innerhtml = data.msg;
+				}
+			}
+			
+		JS原生post方法的小栗子:
+			var user = document.getElementById('user');
+			var span = document.getElementsByTagName('span')[0];
+			user.onblur = function(){
+				const ajax = new XMLHttpRequest;
+				ajax.open('post','php/post.php');
+				ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+				ajax.send('user='+user.value);
+				ajax.onload = function(){
+					var data = ajax.responseText;
+					span.innerHTML = data;
+				}
+			}
+			
+		JQ-get方法的小栗子:
+			用户名：<input type = "text" id = "user">
+			<span></span>
+			$('#user').blur(function(){
+				$.ajax({
+					url:'php/get_json.php',
+					data:{
+						user:$('#user').val()
+					},
+					dataType:'json',
+					success:function(data){
+						$('span').text(data.msg)
+					}
+				});
+			})
+			
+		JQ-post方法的小栗子:
+			用户名：<input type = "text" id = "user">
+			<span></span>
+			$('#user').blur(function(){
+				$.ajax({
+					type:"post",
+					url:"php/post.php",
+					data:{
+						user:$('#user').val(),
+					},
+					success:function(data){
+						$('span').text(data)
+					}
+				});
+			})  
 		
 		在IE下，中文会被解析成URL码，所以建议只要val值会出现中文时就用encodeURI来包一下。
 			encodeURI(内容)；	//中文转URL码
